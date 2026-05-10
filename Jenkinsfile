@@ -7,7 +7,7 @@ pipeline {
     }
 
     triggers {
-        cron('10 22 * * *')
+        cron('15 22 * * *')
     }
 
     stages {
@@ -15,7 +15,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 git branch: 'main',
-                url: 'https://github.com/yourusername/playwright-framework.git'
+                url: 'https://github.com/rmramesh-tester/CIDemo_Playwright.git'
             }
         }
 
