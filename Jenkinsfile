@@ -6,12 +6,16 @@ pipeline {
         nodejs 'NodeJS'
     }
 
+    triggers {
+        cron('10 22 * * *')
+    }
+
     stages {
 
         stage('Checkout Code') {
             steps {
                 git branch: 'main',
-                url: 'https://github.com/rmramesh-tester/CIDemo_Playwright.git'
+                url: 'https://github.com/yourusername/playwright-framework.git'
             }
         }
 
@@ -30,6 +34,12 @@ pipeline {
         stage('Execute Playwright Tests') {
             steps {
                 bat 'npx playwright test'
+            }
+        }
+
+        stage('Generate Playwright HTML Report') {
+            steps {
+                bat 'npx playwright show-report'
             }
         }
     }
