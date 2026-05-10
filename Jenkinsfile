@@ -3,11 +3,11 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'NodeJS'
+        nodejs 'NodeJS_20'
     }
 
     triggers {
-        cron('15 22 * * *')
+        cron('30 22 * * *')
     }
 
     stages {
@@ -37,16 +37,15 @@ pipeline {
             }
         }
 
-        stage('Generate Playwright HTML Report') {
-            steps {
-                bat 'npx playwright show-report'
-            }
-        }
     }
 
     post {
 
         always {
+
+                {
+                bat 'npx playwright show-report'
+                }
 
             emailext(
                 subject: "Playwright Build Status: ${currentBuild.currentResult}",
